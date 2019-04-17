@@ -1,0 +1,23 @@
+sudo apt-get update
+sudo apt -y install gcc --fix-missing
+sudo apt-get -y install zlib1g-dev
+sudo apt -y install cmake
+sudo apt -y install g++
+sudo apt -y install libbz2-dev
+sudo apt -y install liblzma-dev
+sudo apt -y install python
+mkdir bin
+cd bin
+wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2
+tar -xvf samtools-1.9.tar.bz2
+cd samtools-1.9
+./configure --without-curses
+sudo make
+sudo make install
+cd
+cd bin
+git clone https://github.com/jandrewrfarrell/RUFUS.git
+cd RUFUS
+cd bin
+cmake ../ -DCMAKE_C_COMPILER=$(which gcc) -DCMAKE_CXX_COMPILER=$(which g++)
+make
